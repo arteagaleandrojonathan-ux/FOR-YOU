@@ -726,3 +726,121 @@ button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation
   .display-title { font-size: 1.45rem; }
   #fotosFinales img { width: 27vw; height: 36vw; }
 }
+/* =========================================
+   SOLO PERMITIR USO EN HORIZONTAL
+   ========================================= */
+
+.orientation-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+
+    width: 100vw;
+    height: 100dvh;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background: linear-gradient(
+        180deg,
+        #fff8e1,
+        #ffecb3
+    );
+}
+
+.orientation-card {
+    width: min(420px, 90vw);
+
+    padding: 30px 24px;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    box-shadow:
+        0 15px 40px rgba(90, 60, 20, 0.15);
+
+    backdrop-filter: blur(8px);
+}
+
+.orientation-card h2 {
+    margin: 10px 0;
+
+    color: #3a2b1f;
+
+    font-size: 1.7rem;
+}
+
+.orientation-card p {
+    margin: 0;
+
+    color: #6b4a2d;
+
+    font-size: 1rem;
+
+    line-height: 1.5;
+}
+
+.rotate-phone {
+    font-size: 3.5rem;
+
+    animation: rotatePhone 1.8s ease-in-out infinite;
+}
+
+@keyframes rotatePhone {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    45% {
+        transform: rotate(90deg);
+    }
+
+    70% {
+        transform: rotate(90deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
+/* CELULAR EN VERTICAL */
+
+@media (orientation: portrait) {
+
+    body > *:not(#orientationOverlay) {
+        visibility: hidden;
+    }
+
+    #orientationOverlay {
+        display: flex;
+        visibility: visible;
+    }
+
+    #orientationOverlay * {
+        visibility: visible;
+    }
+}
+
+
+/* CELULAR EN HORIZONTAL */
+
+@media (orientation: landscape) {
+
+    #orientationOverlay {
+        display: none;
+    }
+
+    body > * {
+        visibility: visible;
+    }
+}
