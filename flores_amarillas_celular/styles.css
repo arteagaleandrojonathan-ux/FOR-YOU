@@ -844,3 +844,94 @@ button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation
         visibility: visible;
     }
 }
+
+/* =========================================
+   AJUSTE PARA CELULAR HORIZONTAL
+   ========================================= */
+
+@media (orientation: landscape) and (max-height: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .navbar {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .hero {
+        min-height: auto !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    .display-title {
+        font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+        line-height: 1.1;
+    }
+
+    .subtitle {
+        font-size: .85rem !important;
+    }
+
+    .typewriter {
+        font-size: .85rem !important;
+    }
+
+    main {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    .card-body {
+        padding: 10px !important;
+    }
+
+    .card-glass {
+        padding: 10px !important;
+    }
+
+    /* Imágenes */
+    #miniCarousel img {
+        height: 45vh !important;
+        max-height: 300px;
+        object-fit: cover;
+    }
+
+    /* Fotos finales */
+    #fotosFinales {
+        max-height: 100vh;
+        overflow: hidden;
+    }
+
+    #fotosFinales img {
+        width: min(15vw, 110px) !important;
+        height: min(35vh, 150px) !important;
+        object-fit: cover;
+    }
+
+    /* Texto final */
+    .mensaje-corazon {
+        width: 80%;
+        font-size: clamp(.8rem, 2.5vw, 1.2rem);
+    }
+
+    .mensaje-especial {
+        width: 80%;
+        font-size: clamp(.8rem, 2.5vw, 1.2rem);
+    }
+
+    .heart-shape {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    button {
+        padding: 7px 14px !important;
+        font-size: .85rem !important;
+    }
+}
