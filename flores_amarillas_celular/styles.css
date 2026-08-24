@@ -1,0 +1,728 @@
+:root {
+  --bg1: #fff8e1;
+  --bg2: #ffecb3;
+  --accent: #ffca28;
+  --warm: #f57f17;
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-strong: rgba(255, 255, 255, 0.75);
+  --card-radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial;
+}
+body {
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Canvas as background */
+#petal-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* overlay start */
+.start-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45));
+  z-index: 9999;
+}
+.start-overlay .btn {
+  padding: 14px 26px;
+  font-size: 1.15rem;
+  border-radius: 14px;
+}
+
+/* nav tweak */
+nav.navbar {
+  background: transparent;
+  position: relative;
+  z-index: 5;
+}
+.navbar-brand {
+  color: var(--warm);
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+}
+
+/* HERO */
+.hero {
+  min-height: 66vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+.card-glass {
+  border-radius: var(--card-radius);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.62),
+    rgba(255, 255, 255, 0.45)
+  );
+  backdrop-filter: blur(6px) saturate(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.display-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  color: #3a2b1f;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.6px;
+  text-shadow: 0 6px 18px rgba(255, 202, 40, 0.12);
+}
+.subtitle {
+  color: #6b4a2d;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.typewriter {
+  min-height: 1.6em;
+  color: #4b2f23;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 2.6vw, 1.12rem);
+  opacity: 0.95;
+}
+
+/* Buttons */
+.btn-warning {
+  background: var(--accent);
+  border: none;
+  color: #3b2a18;
+  box-shadow: 0 8px 24px rgba(255, 202, 40, 0.14);
+  border-radius: 12px;
+}
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+/* Cards section */
+.card-accent {
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 250, 240, 0.95)
+  );
+}
+.card-accent .card-title {
+  font-weight: 700;
+}
+
+/* footer note (not included but safe) */
+footer {
+  padding: 2rem 0;
+  text-align: center;
+  color: #6b4a2d;
+}
+
+/* Modal content */
+.modal .bg-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 250, 235, 1),
+    rgba(255, 244, 217, 1)
+  );
+}
+
+/* Sunflower SVG petals animation */
+.sunflower .petal {
+  fill: url(#gPetal);
+  transform-origin: 100px 100px;
+  opacity: 0;
+  transform: translateY(8px) scale(0.7);
+  animation: petalIn 0.45s forwards;
+}
+.sunflower .petal:nth-child(1) {
+  animation-delay: 0.12s;
+}
+.sunflower .petal:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.sunflower .petal:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.sunflower .petal:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.sunflower .petal:nth-child(5) {
+  animation-delay: 0.36s;
+}
+.sunflower .petal:nth-child(6) {
+  animation-delay: 0.42s;
+}
+.sunflower .petal:nth-child(7) {
+  animation-delay: 0.48s;
+}
+.sunflower .petal:nth-child(8) {
+  animation-delay: 0.54s;
+}
+.sunflower .petal:nth-child(9) {
+  animation-delay: 0.6s;
+}
+.sunflower .petal:nth-child(10) {
+  animation-delay: 0.66s;
+}
+.sunflower .petal:nth-child(11) {
+  animation-delay: 0.72s;
+}
+.sunflower .petal:nth-child(12) {
+  animation-delay: 0.78s;
+}
+
+@keyframes petalIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* floating hearts (when sending love) */
+.heart {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0) scale(0.9);
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(180deg, #ff8a65, #ff5252);
+  clip-path: polygon(
+    50% 0%,
+    61% 12%,
+    75% 12%,
+    88% 26%,
+    88% 42%,
+    75% 55%,
+    50% 80%,
+    25% 55%,
+    12% 42%,
+    12% 26%,
+    25% 12%,
+    39% 12%
+  );
+  opacity: 1;
+  z-index: 1200;
+  pointer-events: none;
+  animation: heartUp 1.6s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes heartUp {
+  to {
+    transform: translateX(calc(-50% + -40px)) translateY(-220px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* responsive polish */
+@media (max-width: 600px) {
+  .card-glass {
+    padding: 1.2rem;
+  }
+  .hero {
+    min-height: 72vh;
+  }
+  .display-title {
+    font-size: 1.5rem;
+  }
+  .typewriter {
+    font-size: 0.98rem;
+  }
+}
+
+/* animación "pop" al aparecer */
+.sunflower {
+  transform: scale(0.6);
+  opacity: 0;
+  animation: sunflowerPop 0.8s ease forwards;
+}
+
+@keyframes sunflowerPop {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Botón especial */
+.btn-love {
+  background: #fdd835;
+  color: #333;
+  border: none;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-love:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Base */
+.love-note {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px) saturate(1.2);
+  border: 2px solid rgba(251, 192, 45, 0.8);
+  border-radius: 18px;
+  padding: 0.6rem 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #444;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  z-index: 3000;
+}
+
+/* Piquito */
+.love-note::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: rgba(251, 192, 45, 0.8) transparent transparent transparent;
+}
+
+/* Animaciones */
+@keyframes loveIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -4px) scale(1.05);
+  }
+  80% {
+    transform: translate(-50%, 0) scale(0.95);
+  }
+  100% {
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@keyframes loveOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 15px) scale(0.8);
+  }
+}
+
+@keyframes lovePulse {
+  0%,
+  100% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50%, 0) scale(1.05);
+  }
+}
+
+/* Estados */
+.love-note.show {
+  animation: loveIn 2s cubic-bezier(0.21, 1.02, 0.73, 1) forwards,
+    lovePulse 1.6s ease-in-out infinite 0.8s;
+}
+
+.love-note.hide {
+  animation: loveOut 1.5s ease forwards;
+}
+
+/* Botón principal */
+button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background: gold;
+  color: #222;
+  cursor: pointer;
+  transition: transform 0.2s, font-size 0.2s, padding 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Overlay */
+.fireworks-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0b0d26 0%, #000 80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+  overflow: hidden;
+}
+
+
+
+
+
+/* ========================================
+   CAPAS DE LA SORPRESA FINAL
+   ======================================== */
+
+/* Las fotos quedan al fondo */
+#pantallaFinal {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Contenedor de fotos */
+#fotosFinales {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Cada fotografía */
+#fotosFinales img {
+    position: absolute;
+
+    width: 180px;
+    height: 230px;
+
+    object-fit: cover;
+    border-radius: 15px;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease-in-out,
+        transform 4s ease-in-out;
+
+    filter: brightness(0.65);
+
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+}
+
+
+/* Fuegos artificiales por encima de las fotos */
+#fireworksCanvas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+
+/* Corazón y texto por encima de TODO */
+.heart-shape {
+    position: absolute;
+    z-index: 3;
+
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: "Segoe Script", cursive;
+    color: gold;
+
+    text-shadow:
+        0 0 15px #fff,
+        0 0 25px #ff69b4,
+        0 0 40px #ffd700;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease,
+        font-size 0.3s ease;
+}
+
+
+/* Canvas */
+#fireworksCanvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* Corazón */
+.heart-shape {
+  position: absolute;
+  font-size: 4rem;
+  font-weight: bold;
+  font-family: "Segoe Script", cursive;
+  color: gold;
+  text-shadow: 0 0 15px #fff, 0 0 25px #ff69b4, 0 0 40px #ffd700;
+  opacity: 0;
+  transition: opacity 2s ease, font-size 0.3s ease;
+}
+
+.d-none {
+  display: none !important;
+}
+
+/* Media queries para responsividad */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .heart-shape {
+    font-size: 3rem;
+  }
+}
+
+/* Smartphones grandes */
+@media (max-width: 768px) {
+  button {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .heart-shape {
+    font-size: 2.5rem;
+  }
+}
+
+/* Smartphones pequeños */
+@media (max-width: 480px) {
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .heart-shape {
+    font-size: 2rem;
+  }
+}
+
+/* Fotos románticas de fondo */
+
+#pantallaFinal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Fotos */
+#fotosFinales {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#fotosFinales img {
+    position: absolute;
+
+    width: 230px;
+    height: 300px;
+
+    object-fit: cover;
+    border-radius: 15px;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease-in-out,
+        transform 4s ease-in-out;
+
+    filter: brightness(0.65);
+
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+}
+
+
+/* ========================================
+   TEXTOS DEL SEGUNDO PLANO
+   ======================================== */
+
+.mensaje-corazon {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 10%;
+
+    transform: translateX(-50%);
+
+    width: 85%;
+    max-width: 750px;
+
+    text-align: center;
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.8),
+        0 0 18px rgba(255,215,0,0.5);
+
+    opacity: 0;
+
+    z-index: 5000;
+
+    pointer-events: none;
+
+    transition: opacity 0.8s ease;
+}
+
+
+/* Cursor de escritura */
+
+.mensaje-corazon::after {
+
+    content: "|";
+
+    margin-left: 4px;
+
+    animation: cursorTexto 0.7s infinite;
+
+}
+
+
+@keyframes cursorTexto {
+
+    0%, 50% {
+        opacity: 1;
+    }
+
+    51%, 100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* Aparición */
+
+.mensaje-corazon.mostrar {
+
+    opacity: 1;
+
+}
+
+
+/* Desaparición */
+
+.mensaje-corazon.ocultar {
+
+    opacity: 0;
+
+}
+
+.mensaje-especial {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 10%;
+
+    transform: translateX(-50%);
+
+    width: 85%;
+    max-width: 750px;
+
+    text-align: center;
+
+    color: #ffe98a;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+
+    font-weight: 500;
+
+    letter-spacing: 0.5px;
+
+    line-height: 1.6;
+
+    /* Fosforescente amarillo suave */
+    text-shadow:
+        0 0 5px rgba(255, 215, 0, 0.45),
+        0 0 12px rgba(255, 215, 0, 0.20);
+
+    opacity: 0;
+
+    z-index: 5000;
+
+    pointer-events: none;
+
+    transition: opacity 1.2s ease;
+}
+/* ===== Ajustes para iPhone y pantallas táctiles ===== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { min-height: 100dvh; }
+img { max-width: 100%; }
+button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+@media (max-width: 600px) {
+  .navbar { padding-left: .75rem; padding-right: .75rem; }
+  .navbar-brand { font-size: 1rem; }
+  .hero { min-height: auto; padding: 1.5rem .75rem 2rem; }
+  .card-glass { padding: .75rem !important; }
+  .display-title { font-size: 1.65rem; line-height: 1.2; }
+  .subtitle { font-size: .92rem; }
+  .typewriter { font-size: .95rem; }
+  main { padding-top: 1.5rem !important; }
+  .card-body { padding: 1.1rem; }
+  #miniCarousel img { height: 52vw; min-height: 210px; object-fit: cover; }
+  #fotosFinales img { width: min(28vw, 125px); height: min(38vw, 165px); border-radius: 12px; }
+  .mensaje-corazon, .mensaje-especial { width: 90%; bottom: 7%; font-size: clamp(.9rem, 4vw, 1.15rem); line-height: 1.45; }
+  .heart-shape { font-size: clamp(1.7rem, 9vw, 2.5rem); max-width: 90vw; text-align: center; }
+}
+
+@media (max-width: 380px) {
+  .navbar-brand { font-size: .9rem; }
+  .display-title { font-size: 1.45rem; }
+  #fotosFinales img { width: 27vw; height: 36vw; }
+}

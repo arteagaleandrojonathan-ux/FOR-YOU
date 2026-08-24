@@ -1,0 +1,9 @@
+{
+  "name": "Flores Amarillas 🌼 — Para ti",
+  "short_name": "Flores Amarillas",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff8e1",
+  "theme_color": "#fff8e1",
+  "lang": "es"
+}
